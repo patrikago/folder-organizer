@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>iPhone Organizer</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="app">
+
+        <!-- HEADER -->
+
+        <header class="header">
+
+            <div class="brand-mark">
+                <img src="assets/Cat-Logo.svg" alt="">
+            </div>
+
+            <div class="brand-info">
+                <div class="brand-copy">
+                    <h1>Folder Organizer</h1>
+
+                    <p>For Quicker iPhone Photo and Video Transfers.</p>
+                </div>
+                <button class="info-button" type="button" title="About Folder Organizer"
+                aria-label="About Folder Organizer" aria-controls="info-modal" aria-expanded="false">i</button>
+            </div>
+
+            
+
+        </header>
+
+
+        <!-- SOURCE -->
+
+        <section class="section">
+
+            <div class="section-label">
+                SOURCE FOLDER
+            </div>
+
+            <div class="folder-input">
+
+                <div class="folder-path">
+                    Choose a folder...
+                </div>
+
+                <button class="icon-button" type="button" title="Browse for source folder"
+                    aria-label="Browse for source folder">
+                    <img src="assets/Folder_Icon.svg" alt="">
+                </button>
+
+                <button class="scan-icon-button source-scan-button" type="button" title="Scan selected folder"
+                    aria-label="Scan selected folder">
+                    <img src="assets/Scan_Icon.svg" alt="">
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ORGANIZATION METHOD -->
+
+        <section class="section">
+
+            <div class="section-label">
+                ORGANIZATION METHOD
+            </div>
+
+
+            <div class="mode-grid">
+
+
+                <!-- MOVE -->
+
+                <div class="mode-card" data-mode="move">
+
+                    <img class="mode-art" src="assets/Diamond.svg" alt="">
+
+                    <div class="mode-content">
+
+                        <h2>
+                            Organize current folder
+                        </h2>
+
+                        <p>
+                            Move files within the current folder without using additional storage.
+                        </p>
+
+                        <div class="card-feedback" role="status">
+                            Please choose a folder to organize!
+                        </div>
+
+                    </div>
+
+                    <button class="card-action" type="button">Organize</button>
+
+                </div>
+
+
+                <!-- COPY -->
+
+                <div class="mode-card" data-mode="copy">
+
+                    <img class="mode-art" src="assets/Diamond_Copy.svg" alt="">
+
+                    <div class="mode-content">
+
+                        <h2>
+                            Create an organized copy
+                        </h2>
+
+                        <p>
+                            Copy files to a new location while keeping the originals untouched.
+                        </p>
+
+                        <div class="card-feedback" role="status">
+                            Please choose a folder to organize!
+                        </div>
+
+                    </div>
+
+                    <button class="card-action" type="button">Organize</button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- DESTINATION -->
+
+        <section class="section destination-section hidden">
+
+            <div class="section-label">
+                DESTINATION FOLDER
+            </div>
+
+            <div class="folder-input">
+
+                <div class="folder-path">
+                    Choose a destination folder...
+                </div>
+
+                <button class="icon-button" type="button" title="Browse for destination folder"
+                    aria-label="Browse for destination folder">
+                    <img src="assets/Folder_Icon.svg" alt="">
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ACTIONS -->
+
+        <div class="actions">
+
+            <div class="scan-status">
+                <img src="assets/Scan_Icon.svg" alt="">
+                <span>Scan to reveal...</span>
+            </div>
+
+        </div>
+
+
+        <!-- RESULTS -->
+
+        <section class="results">
+
+            <div id="preview-title" class="preview-header hidden">
+
+                <div class="preview-header-icon">
+                    <img src="assets/Scan_Icon.svg" alt="">
+                </div>
+
+                <div class="preview-header-text">
+                    <h2>Organization Preview</h2>
+
+                    <p>
+                        Files will be organized by
+                        <span class="accent-text">type</span> and
+                        <span class="accent-text">year</span>.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="stat-card">
+
+                <strong>—</strong>
+
+                <span>
+                    Files Scanned
+                </span>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <strong>—</strong>
+
+                <span>
+                    Photos
+                </span>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <strong>—</strong>
+
+                <span>
+                    Videos
+                </span>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <strong>—</strong>
+
+                <span>
+                    Other Files
+                </span>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <strong>—</strong>
+
+                <span>
+                    0-Byte Files
+                </span>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <strong>—</strong>
+
+                <span>
+                    Duplicates
+                </span>
+
+            </div>
+
+            <section id="preview-section" class="preview-section">
+
+                <div class="year-preview">
+
+                    <!-- PHOTOS -->
+
+                    <div class="year-group">
+
+                        <div class="year-group-header">
+
+                            <div>
+                                <h3>Photos</h3>
+
+                                <span id="photo-total">
+                                    —
+                                </span>
+                            </div>
+
+                        </div>
+
+                        <div id="photo-years" class="year-list"></div>
+
+                    </div>
+
+
+                    <!-- VIDEOS -->
+
+                    <div class="year-group">
+
+                        <div class="year-group-header">
+
+                            <div>
+                                <h3>Videos</h3>
+
+                                <span id="video-total">
+                                    —
+                                </span>
+                            </div>
+
+                        </div>
+
+                        <div id="video-years" class="year-list"></div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- METADATA WARNING -->
+
+                <div class="preview-notes">
+
+                    <div id="metadata-warning" class="preview-warning"></div>
+
+
+                    <!-- DUPLICATE WARNING -->
+
+                    <div id="duplicate-warning" class="preview-warning preview-warning--urgent"></div>
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+    <!-- INFO MODAL -->
+
+    <div id="info-modal" class="info-modal" role="dialog" aria-modal="true"
+        aria-labelledby="info-modal-title" aria-hidden="true">
+
+        <div class="info-modal-backdrop" data-info-close></div>
+
+        <section class="info-dialog">
+
+            <div class="info-dialog-header">
+                <div>
+                    <div class="section-label">QUICK GUIDE</div>
+                    <h2 id="info-modal-title">How Folder Organizer works</h2>
+                </div>
+
+                <button class="info-close-button" type="button" title="Close guide"
+                    aria-label="Close guide" data-info-close>&times;</button>
+            </div>
+
+            <div class="info-dialog-content">
+                <section class="info-block">
+                    <h3>Use it in three steps</h3>
+                    <ol class="info-steps">
+                        <li><strong>Choose a source folder.</strong> This is the folder the app scans.</li>
+                        <li><strong>Scan the folder.</strong> Review the totals, years, and warnings before organizing.</li>
+                        <li><strong>Choose Move or Copy.</strong> Move reorganizes the source folder. Copy leaves the originals where they are and asks for a destination folder.</li>
+                    </ol>
+                </section>
+
+                <section class="info-block">
+                    <h3>What gets organized</h3>
+                    <p>Photos and videos are placed in <strong>Photos/&lt;year&gt;</strong> and <strong>Videos/&lt;year&gt;</strong>. The scan searches through subfolders, but skips folders named <strong>Photos</strong> or <strong>Videos</strong> so an organized folder is not scanned again.</p>
+                    <p>Supported formats are JPG, JPEG, HEIC, and PNG photos, plus MOV, MP4, and M4V videos. Other file types are shown in the scan but are not organized.</p>
+                </section>
+
+                <section class="info-block info-block--warnings">
+                    <h3>Warnings to check</h3>
+                    <ul class="info-list">
+                        <li><strong>Missing capture date:</strong> when reliable photo or video metadata is unavailable, the file modified date is used for its year. That may not be the original capture year.</li>
+                        <li><strong>Duplicate filename:</strong> files with the same name are not overwritten. The later destination gets a suffix such as <strong>(1)</strong> or <strong>(2)</strong>.</li>
+                        <li><strong>Zero-byte file:</strong> empty files are skipped and are not copied or moved.</li>
+                        <li><strong>Unreadable file:</strong> files whose size or date cannot be read are skipped from organization.</li>
+                        <li><strong>Move changes the source:</strong> the default Move option removes successfully organized files from their original locations. Use Copy when you need to preserve them.</li>
+                        <li><strong>Scan before organizing:</strong> the app organizes the results from the last scan. Scan again after changing the source folder or its contents.</li>
+                    </ul>
+                </section>
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>
