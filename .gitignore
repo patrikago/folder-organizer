@@ -28,3 +28,6 @@ Thumbs.db
 
 # Inno Setup compiler junk
 *.dSYM/
+
+# Required build dependency, downloaded separately (see README)
+ffmpeg/ffprobe.exe
