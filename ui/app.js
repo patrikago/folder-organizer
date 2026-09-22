@@ -108,9 +108,53 @@ async function restoreSourceFolder() {
 }
 
 
+const updateBanner =
+    document.querySelector("#update-banner");
+
+const updateBannerText =
+    document.querySelector("#update-banner-text");
+
+const updateBannerLink =
+    document.querySelector("#update-banner-link");
+
+const updateBannerDismiss =
+    document.querySelector("#update-banner-dismiss");
+
+
+async function checkForUpdate() {
+
+    try {
+        const update = await pywebview.api.check_for_update();
+
+        if (!update) {
+            return;
+        }
+
+        updateBannerText.textContent =
+            `A new version (${update.latest_version}) is available.`;
+
+        updateBannerLink.onclick =
+            () => pywebview.api.open_release_page(update.url);
+
+        updateBanner.classList.remove("hidden");
+    } catch (error) {
+        // Fail silently - update checks should never block the app.
+    }
+}
+
+
+updateBannerDismiss.addEventListener(
+    "click",
+    () => updateBanner.classList.add("hidden")
+);
+
+
 window.addEventListener(
     "pywebviewready",
-    restoreSourceFolder
+    () => {
+        restoreSourceFolder();
+        checkForUpdate();
+    }
 );
 
 

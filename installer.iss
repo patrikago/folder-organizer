@@ -1,10 +1,10 @@
-; Inno Setup script for iPhone Photo Sorting
+; Inno Setup script for PicPur
 ; Build with: iscc installer.iss
-; Requires the onedir PyInstaller build to already exist in dist\iPhonePhotoSorting
+; Requires the onedir PyInstaller build to already exist in dist\PicPur
 
-#define MyAppName "iPhone Photo Sorting"
-#define MyAppExeName "iPhonePhotoSorting.exe"
-#define MyAppPublisher "iPhone Photo Sorting"
+#define MyAppName "PicPur"
+#define MyAppExeName "PicPur.exe"
+#define MyAppPublisher "PicPur"
 
 ; Read the version straight from version.py (a single line: __version__ = "x.y.z") so the installer always matches the app.
 #define FileHandle FileOpen(SourcePath + "version.py")
@@ -21,12 +21,13 @@ DefaultDirName={autopf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
 DisableProgramGroupPage=yes
 OutputDir=installer_output
-OutputBaseFilename=iPhonePhotoSorting-Setup-{#MyAppVersion}
+OutputBaseFilename=PicPur-Setup-{#MyAppVersion}
 Compression=lzma2
 SolidCompression=yes
 WizardStyle=modern
 ArchitecturesInstallIn64BitMode=x64compatible
 UninstallDisplayIcon={app}\{#MyAppExeName}
+SetupIconFile=assets\icon.ico
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -35,7 +36,7 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "Create a &desktop shortcut"; GroupDescription: "Additional icons:"; Flags: unchecked
 
 [Files]
-Source: "dist\iPhonePhotoSorting\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "dist\PicPur\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"

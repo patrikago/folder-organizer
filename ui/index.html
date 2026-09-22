@@ -6,8 +6,9 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>iPhone Organizer</title>
+    <title>PicPur</title>
 
+    <link rel="icon" type="image/png" href="assets/favicon.png">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -25,17 +26,33 @@
 
             <div class="brand-info">
                 <div class="brand-copy">
-                    <h1>Folder Organizer</h1>
+                    <h1>PicPur - Folder Organizer</h1>
 
                     <p>For Quicker iPhone Photo and Video Transfers.</p>
                 </div>
-                <button class="info-button" type="button" title="About Folder Organizer"
-                aria-label="About Folder Organizer" aria-controls="info-modal" aria-expanded="false">i</button>
+                <button class="info-button" type="button" title="About PicPur"
+                aria-label="About PicPur" aria-controls="info-modal" aria-expanded="false">i</button>
             </div>
 
             
 
         </header>
+
+
+        <!-- UPDATE BANNER -->
+
+        <div id="update-banner" class="update-banner hidden" role="status">
+
+            <span id="update-banner-text"></span>
+
+            <button id="update-banner-link" class="update-banner-link" type="button">
+                View release
+            </button>
+
+            <button id="update-banner-dismiss" class="update-banner-dismiss" type="button"
+                title="Dismiss" aria-label="Dismiss update notification">&times;</button>
+
+        </div>
 
 
         <!-- SOURCE -->
@@ -340,7 +357,7 @@
             <div class="info-dialog-header">
                 <div>
                     <div class="section-label">QUICK GUIDE</div>
-                    <h2 id="info-modal-title">How Folder Organizer works</h2>
+                    <h2 id="info-modal-title">How PicPur works</h2>
                 </div>
 
                 <button class="info-close-button" type="button" title="Close guide"

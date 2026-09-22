@@ -1,8 +1,30 @@
+import json
+import sys
+import urllib.error
+import urllib.request
+import webbrowser
+from pathlib import Path
+
 import webview
 
 from scanner import scan_folder, build_duplicate_details
 from organizer import organize_files
 from version import __version__
+
+UPDATE_CHECK_URL = (
+    "https://api.github.com/repos/patrikago/folder-organizer/releases/latest"
+)
+UPDATE_CHECK_TIMEOUT_SECONDS = 5
+
+
+def _parse_version(version_string):
+    parts = []
+
+    for part in version_string.strip().lstrip("vV").split("."):
+        digits = "".join(ch for ch in part if ch.isdigit())
+        parts.append(int(digits) if digits else 0)
+
+    return tuple(parts)
 
 
 class Api:
@@ -10,6 +32,47 @@ class Api:
     def __init__(self):
         self.results = None
         self.source_folder = None
+
+    def check_for_update(self):
+        try:
+            request = urllib.request.Request(
+                UPDATE_CHECK_URL,
+                headers={"Accept": "application/vnd.github+json"}
+            )
+
+            with urllib.request.urlopen(
+                request,
+                timeout=UPDATE_CHECK_TIMEOUT_SECONDS
+            ) as response:
+                data = json.load(response)
+
+            tag_name = data.get("tag_name", "")
+            html_url = data.get("html_url", "")
+
+            if not tag_name or not html_url:
+                return None
+
+            if _parse_version(tag_name) <= _parse_version(__version__):
+                return None
+
+            return {
+                "latest_version": tag_name,
+                "url": html_url
+            }
+        except Exception:
+            # Network failures, timeouts, or malformed responses should
+            # never interrupt the app - fail silently.
+            return None
+
+    def open_release_page(self, url):
+        if not isinstance(url, str) or not url.startswith(
+            "https://github.com/"
+        ):
+            return False
+
+        webbrowser.open(url)
+
+        return True
 
     def select_folder(self):
         result = window.create_file_dialog(
@@ -197,11 +260,18 @@ class Api:
         }
 
 
+def resource_path(relative_path):
+    # PyInstaller extracts bundled data next to the exe under _internal.
+    base_path = getattr(sys, "_MEIPASS", Path(__file__).parent)
+
+    return str(Path(base_path) / relative_path)
+
+
 api = Api()
 
 
 window = webview.create_window(
-    "iPhone Organizer",
+    "PicPur",
     "ui/index.html",
     js_api=api,
     width=1000,
@@ -210,4 +280,8 @@ window = webview.create_window(
 )
 
 
-webview.start(debug=True)
+# Devtools stay off in the packaged (frozen) build.
+webview.start(
+    debug=not getattr(sys, "frozen", False),
+    icon=resource_path("assets/icon.ico")
+)

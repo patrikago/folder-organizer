@@ -5,6 +5,7 @@ from version import __version__
 
 project_dir = Path(SPECPATH)
 ffprobe_path = project_dir / "ffmpeg" / "ffprobe.exe"
+icon_path = project_dir / "assets" / "icon.ico"
 app_version = __version__
 
 
@@ -14,7 +15,7 @@ a = Analysis(
     binaries=[(str(ffprobe_path), "ffmpeg")],
     datas=[
         (str(project_dir / "ui"), "ui"),
-        (str(project_dir / "assets"), "assets")
+        (str(icon_path), "assets")
     ],
     hiddenimports=[],
     hookspath=[],
@@ -33,12 +34,13 @@ exe = EXE(
     a.scripts,
     [],
     exclude_binaries=True,
-    name="iPhonePhotoSorting",
+    name="PicPur",
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
     upx=True,
-    console=False
+    console=False,
+    icon=str(icon_path)
 )
 
 coll = COLLECT(
@@ -47,5 +49,5 @@ coll = COLLECT(
     a.datas,
     strip=False,
     upx=True,
-    name="iPhonePhotoSorting"
+    name="PicPur"
 )

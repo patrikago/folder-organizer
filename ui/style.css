@@ -112,6 +112,45 @@ button {
     line-height: 24px;
 }
 
+/* UPDATE BANNER */
+
+.update-banner {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: -32px 14px 32px;
+    padding: 14px 18px;
+    background: #fff4e0;
+    border: 1px solid var(--yellow);
+    border-radius: 14px;
+    font-size: 15px;
+    color: var(--text);
+}
+
+.update-banner.hidden {
+    display: none;
+}
+
+.update-banner-link {
+    margin-left: auto;
+    padding: 6px 14px;
+    background: var(--orange);
+    color: #fff;
+    border: 0;
+    border-radius: 999px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.update-banner-dismiss {
+    background: transparent;
+    border: 0;
+    font-size: 20px;
+    line-height: 1;
+    color: var(--muted);
+    cursor: pointer;
+}
+
 .info-button {
     display: grid;
     place-items: center;
